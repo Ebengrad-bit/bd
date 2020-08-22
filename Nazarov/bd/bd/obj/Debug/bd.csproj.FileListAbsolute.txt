@@ -1,0 +1,16 @@
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\bin\Debug\Database1.mdf
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\bin\Debug\Database1_log.ldf
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\bin\Debug\bd.exe.config
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\bin\Debug\bd.exe
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\bin\Debug\bd.pdb
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\obj\Debug\bd.csprojAssemblyReference.cache
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\obj\Debug\bd.AbForm.resources
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\obj\Debug\bd.ContForm.resources
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\obj\Debug\bd.Form1.resources
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\obj\Debug\bd.PhoneForm.resources
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\obj\Debug\bd.Properties.Resources.resources
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\obj\Debug\bd.ProvForm.resources
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\obj\Debug\bd.csproj.GenerateResource.cache
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\obj\Debug\bd.csproj.CoreCompileInputs.cache
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\obj\Debug\bd.exe
+C:\Users\Allah\Desktop\проекты\bd-master\bd-master\Nazarov\bd\bd\obj\Debug\bd.pdb

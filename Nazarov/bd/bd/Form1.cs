@@ -95,12 +95,17 @@ namespace bd
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void UpdateAll()
         {
             UpdateAbonent();
             UpdateContact();
             UpdateProvider();
             UpdateMB();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            UpdateAll();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -138,7 +143,7 @@ namespace bd
                 var command = new SqlCommand(reqiest, connection);
                 command.ExecuteNonQuery();
                 connection.Close();
-                UpdateAbonent();
+                UpdateAll();
             }
         }
 
@@ -172,7 +177,7 @@ namespace bd
                 var command = new SqlCommand(reqiest, connection);
                 command.ExecuteNonQuery();
                 connection.Close();
-                UpdateAbonent();
+                UpdateAll();
             }
         }
 
@@ -191,7 +196,7 @@ namespace bd
             var command = new SqlCommand(reqiest, connection);
             command.ExecuteNonQuery();
             connection.Close();
-            UpdateAbonent();
+            UpdateAll();
         }
 
         private void Serch()
@@ -281,7 +286,7 @@ namespace bd
                 var command = new SqlCommand(reqiest, connection);
                 command.ExecuteNonQuery();
                 connection.Close();
-                UpdateAbonent();
+                UpdateAll();
             }
         }
 
@@ -300,7 +305,7 @@ namespace bd
             var command = new SqlCommand(reqiest, connection);
             command.ExecuteNonQuery();
             connection.Close();
-            UpdateAbonent();
+            UpdateAll();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -321,7 +326,7 @@ namespace bd
                 var command = new SqlCommand(reqiest, connection);
                 command.ExecuteNonQuery();
                 connection.Close();
-                UpdateAbonent();
+                UpdateAll();
             }
         }
 
@@ -340,14 +345,14 @@ namespace bd
                 var command = new SqlCommand(reqiest, connection);
                 command.ExecuteNonQuery();
                 connection.Close();
-                UpdateProvider();
+                UpdateAll();
 
             }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var rov = dgrv_provider.SelectedRows.Count > 0 ? dgrv_contact.SelectedRows[0] : null;
+            var rov = dgrv_provider.SelectedRows.Count > 0 ? dgrv_provider.SelectedRows[0] : null;
             if (rov == null)
             {
                 MessageBox.Show("Строчку выбери", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -360,13 +365,13 @@ namespace bd
             var command = new SqlCommand(reqiest, connection);
             command.ExecuteNonQuery();
             connection.Close();
-            UpdateProvider();
+            UpdateAll();
 
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            var rov = dgrv_provider.SelectedRows.Count > 0 ? dgrv_contact.SelectedRows[0] : null;
+            var rov = dgrv_provider.SelectedRows.Count > 0 ? dgrv_provider.SelectedRows[0] : null;
             if (rov == null)
             {
                 MessageBox.Show("Строчку выбери", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -384,11 +389,13 @@ namespace bd
                 var connection = new SqlConnection(address_and_else);
                 connection.Open();
                 //var reqiest = "INSERT INTO Nazarov_Abonent (name,\"second name\", \"third name\", comment, address) VALUES ('" + fname + "' ,'" + sname + "' ,'" + tname + "' ,'" + comment + "' ,'" + addres + "')";
-                var reqiest = "INSERT INTO Nazarov_Provider (name, score) VALUES ('" + name + "' ,'" + score + "')";
+                //var reqiest = "INSERT INTO Nazarov_Provider (name, score) VALUES ('" + name + "' ,'" + score + "')";
+                var reqiest = "UPDATE Nazarov_Provider SET name ='" + name + "', score='" + score + "' WHERE Id=" + rov.Cells["Id"].Value.ToString() + ";";
+
                 var command = new SqlCommand(reqiest, connection);
                 command.ExecuteNonQuery();
                 connection.Close();
-                UpdateProvider();
+                UpdateAll();
             }
         }
 
@@ -421,13 +428,13 @@ namespace bd
                 var command = new SqlCommand(request, connection);
                 command.ExecuteNonQuery(); //выполняет комманду не требуя что-то взамен и ничего не возвращающий
                 connection.Close();
-                UpdateContact();
+                UpdateAll();
             }
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            var rov = dgrv_phone.SelectedRows.Count > 0 ? dgrv_contact.SelectedRows[0] : null;
+            var rov = dgrv_phone.SelectedRows.Count > 0 ? dgrv_phone.SelectedRows[0] : null;
             if (rov == null)
             {
                 MessageBox.Show("Строчку выбери", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -436,16 +443,16 @@ namespace bd
             var connection = new SqlConnection(address_and_else);
             var id = rov.Cells["Id"].Value.ToString();
             connection.Open();
-            var reqiest = "DELETE FROM Nazarov_Contact WHERE Id=" + id;
+            var reqiest = "DELETE FROM Nazarov_Contact WHERE Id= " + id;
             var command = new SqlCommand(reqiest, connection);
             command.ExecuteNonQuery();
             connection.Close();
-            UpdateContact();
+            UpdateAll();
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            var rov = dgrv_phone.SelectedRows.Count > 0 ? dgrv_contact.SelectedRows[0] : null;
+            var rov = dgrv_phone.SelectedRows.Count > 0 ? dgrv_phone.SelectedRows[0] : null;
             if (rov == null)
             {
                 MessageBox.Show("Строчку выбери", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -481,7 +488,7 @@ namespace bd
                 var command = new SqlCommand(request, connection);
                 command.ExecuteNonQuery(); //выполняет комманду не требуя что-то взамен и ничего не возвращающий
                 connection.Close();
-                UpdateContact();
+                UpdateAll();
             }
         }
 
@@ -526,14 +533,14 @@ namespace bd
 
                 conn.Close();
 
-                UpdateContact();
+                UpdateAll();
             }
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
 
-            var rov = dgrv_phone_list.SelectedRows.Count > 0 ? dgrv_contact.SelectedRows[0] : null;
+            var rov = dgrv_phone_list.SelectedRows.Count > 0 ? dgrv_phone_list.SelectedRows[0] : null;
             if (rov == null)
             {
                 MessageBox.Show("Строчку выбери", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -543,12 +550,69 @@ namespace bd
             var abid = rov.Cells["abon_id"].Value.ToString();
             var conid = rov.Cells["cont_id"].Value.ToString();
             connection.Open();
-            var reqiest = "DELETE FROM Nazarov_Abon_Contact_Buff WHERE abon_id=" + abid + ", cont_id=" + conid;
+            var reqiest = "DELETE FROM Nazarov_Abon_Contact_Buff WHERE abon_id='" + abid + "' AND cont_id='" + conid + "'";
             var command = new SqlCommand(reqiest, connection);
             command.ExecuteNonQuery();
             connection.Close();
-            UpdateContact();
+            UpdateAll();
        
+        }
+
+        private void Button12_Click(object sender, EventArgs e)
+        {
+            var rov = dgrv_phone_list.SelectedRows.Count > 0 ? dgrv_phone_list.SelectedRows[0] : null;
+            if (rov == null)
+            {
+                MessageBox.Show("Строчку выбери", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var old_abid = rov.Cells["Id"].Value.ToString();
+            var old_prid = rov.Cells["Id1"].Value.ToString();
+            var form = new ContForm();
+            {
+                var getReq = "SELECT * FROM Nazarov_Abonent";
+                var contactAdapter = new SqlDataAdapter(getReq, address_and_else);
+                var dict = new Dictionary<int, string>();
+                var providerTbl = new DataTable();
+                contactAdapter.Fill(providerTbl);
+
+                foreach (DataRow row in providerTbl.Rows)
+                {
+                    string s = row["name"].ToString() + row["second name"].ToString() + row["third name"].ToString();
+                    dict.Add((int)row["Id"], s);
+                }
+                form.MeanData = dict;
+            }
+            {
+                var getReq = "SELECT * FROM Nazarov_Contact";
+                var Adapter = new SqlDataAdapter(getReq, address_and_else);
+                var dict = new Dictionary<int, string>();
+                var Tbl = new DataTable();
+                Adapter.Fill(Tbl);
+
+                foreach (DataRow row in Tbl.Rows)
+                {
+                    dict.Add((int)row["Id"], row["phone"].ToString());
+                }
+                form.PhoneData = dict;
+            }
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                var conn = new SqlConnection(address_and_else);
+                conn.Open();
+
+                //var request = "INSERT INTO Nazarov_Abon_Contact_Buff" + "(abon_id, cont_id)" + " VALUES " + "('" + form.AbId + "', '" + form.PhoneId + "')";
+                //var request = "UPDATE Nazarov_Abon_Contact_Buff SET abon_id ='" + form.AbId + "', form.AbId ='" + form.PhoneId + "', povider_id ='" + provider_id.ToString() + "' WHERE Id=" + id + ";";
+                var request = "DELETE FROM Nazarov_Abon_Contact_Buff WHERE abon_id=" + old_abid + " AND cont_id=" + old_prid;
+                var com = new SqlCommand(request, conn);
+                com.ExecuteNonQuery();
+                request = "INSERT INTO Nazarov_Abon_Contact_Buff (abon_id, cont_id)  VALUES  ('" + form.AbId + "', '" + form.PhoneId + "')";
+                com = new SqlCommand(request, conn);
+                com.ExecuteNonQuery();
+                conn.Close();
+
+                UpdateAll();
+            }
         }
     }
 }
