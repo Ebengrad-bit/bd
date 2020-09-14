@@ -474,6 +474,8 @@ namespace bd
             var form = new PhoneForm();
             form.Phone.Text = rov.Cells["phone"].Value.ToString();
             form.type.Text = rov.Cells["type"].Value.ToString();
+            int index = 0;
+            var prid = rov.Cells["povider_id"].Value.ToString();
             {
                 var getReq = "SELECT *FROM Nazarov_Provider";
                 var contactAdapter = new SqlDataAdapter(getReq, address_and_else);
@@ -484,8 +486,11 @@ namespace bd
                 foreach (DataRow row in providerTbl.Rows)
                 {
                     dict.Add((int)row["Id"], row["name"].ToString());
+                    if ((int)row["Id"] == int.Parse(prid))
+                        index = dict.Count - 1;
                 }
                 form.ProviderData = dict;
+                form.comboBox1.SelectedIndex = index;
             }
 
             var res = form.ShowDialog();
@@ -588,15 +593,18 @@ namespace bd
                 var dict = new Dictionary<int, string>();
                 var providerTbl = new DataTable();
                 contactAdapter.Fill(providerTbl);
+                int index = 0;
 
                 foreach (DataRow row in providerTbl.Rows)
                 {
                     string s = row["name"].ToString() + " " + row["second name"].ToString() + " " + row["third name"].ToString();
                     dict.Add((int)row["Id"], s);
+                    if ((int)row["Id"] == int.Parse(old_abid))
+                        index = dict.Count - 1;
                 }
                 form.MeanData = dict;
-                form.Ab.SelectedIndex = int.Parse(old_abid) - 1;
-                
+                form.Ab.SelectedIndex = index;
+                index = 0;
 
                 {
                     getReq = "SELECT * FROM Nazarov_Contact";
@@ -608,9 +616,11 @@ namespace bd
                     foreach (DataRow row in Tbl.Rows)
                     {
                         dict.Add((int)row["Id"], row["phone"].ToString());
+                        if ((int)row["Id"] == int.Parse(old_prid))
+                            index = dict.Count - 1;
                     }
                     form.PhoneData = dict;
-                    form.Phone.SelectedIndex = int.Parse(old_prid) - 1;
+                    form.Phone.SelectedIndex = index;
                 }
                 if (form.ShowDialog() == DialogResult.OK)
                 {
