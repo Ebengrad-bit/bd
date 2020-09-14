@@ -205,11 +205,13 @@ namespace bd
             JOIN Nazarov_Contact ON Nazarov_Contact.Id= Nazarov_Abon_Contact_Buff.cont_id LEFT JOIN Nazarov_Provider ON Nazarov_Provider.Id=Nazarov_Contact.povider_id  WHERE ";
 
             bool dual = false;
+            bool start_search = false;
 
             if (textBox1.Text != "")
             {
                 dual = true;
                 request += " Nazarov_Contact.phone LIKE+'%" + textBox1.Text + "%'";
+                start_search = true;
 
             }
 
@@ -218,7 +220,11 @@ namespace bd
                 if (dual == true)
                     request += " AND ";
                 request += "  Nazarov_Abonent.\"second name\"+' '   +Nazarov_Abonent.\"third name\"+' ' +Nazarov_Abonent.name  LIKE+'%" + textBox2.Text + "%'";
+                start_search = true;
             }
+
+            if (start_search == false)
+                return;
 
             var adapter = new SqlDataAdapter(request, address_and_else);
             var abonTable = new DataTable();
